@@ -34,7 +34,7 @@ class TimeGridHeader extends React.Component {
               <ResourceHeaderComponent
                 index={idx}
                 title={accessors.resourceTitle(resource)}
-                mins={resource.minsByDate[date]}
+                mins={accessors.resource(resource).minsByDate[date]}
                 resource={resource}
               />
             </div>
