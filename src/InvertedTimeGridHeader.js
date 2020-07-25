@@ -20,9 +20,10 @@ class TimeGridHeader extends React.Component {
       components: { resourceHeader: ResourceHeaderComponent = ResourceHeader },
     } = this.props
     const now = new Date()
-    const currentDate = now.getDate()
-    const thisDate = date.getDate()
-    const dateOfMonth = currentDate >= thisDate ? thisDate.toString() : 0
+    const currentMonth = now.getDate()
+    const dateMonth = date.getMonth()
+    const dateOfMonth =
+      dateMonth === currentMonth ? date.getDate().toString() : 0
 
     return (
       <div className="rbc-header inverted">

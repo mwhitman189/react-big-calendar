@@ -4284,9 +4284,9 @@ var TimeGridHeader$1 = /*#__PURE__*/ (function(_React$Component) {
           ? ResourceHeader
           : _this$props2$componen
     var now = new Date()
-    var currentDate = now.getDate()
-    var thisDate = date.getDate()
-    var dateOfMonth = currentDate >= thisDate ? thisDate.toString() : 0
+    var currentMonth = now.getDate()
+    var dateMonth = date.getMonth()
+    var dateOfMonth = dateMonth === currentMonth ? date.getDate().toString() : 0
     return /*#__PURE__*/ React.createElement(
       'div',
       {
