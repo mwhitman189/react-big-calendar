@@ -14243,16 +14243,18 @@
 
     var _proto = TimeGridHeader.prototype
 
-    _proto.renderHeaderCells = function renderHeaderCells() {
+    _proto.renderHeaderCells = function renderHeaderCells(resources, date) {
       var _this$props2 = this.props,
-        resources = _this$props2.resources,
-        date = _this$props2.date,
         accessors = _this$props2.accessors,
         _this$props2$componen = _this$props2.components.resourceHeader,
         ResourceHeaderComponent =
           _this$props2$componen === void 0
             ? ResourceHeader
             : _this$props2$componen
+      var now = new Date()
+      var currentDate = now.getDate()
+      var thisDate = date.getDate()
+      var dateOfMonth = currentDate >= thisDate ? thisDate.toString() : 0
       return /*#__PURE__*/ React__default.createElement(
         'div',
         {
@@ -14273,9 +14275,9 @@
               {
                 index: idx,
                 title: accessors.resourceTitle(resource),
-                mins: resource.minutesByDate
-                  ? resource.minutesByDate[date]
-                  : '',
+                mins: resource.minsByDate
+                  ? resource.minsByDate[dateOfMonth]
+                  : 0,
                 resource: resource,
               }
             )
@@ -14290,7 +14292,7 @@
           /*#__PURE__*/ React__default.createElement(ResourceHeaderComponent, {
             index: 1000,
             title: 'other',
-            mins: '',
+            mins: 0,
             resource: {},
           })
         )
