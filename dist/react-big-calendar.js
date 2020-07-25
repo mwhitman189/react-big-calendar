@@ -14273,7 +14273,9 @@
               {
                 index: idx,
                 title: accessors.resourceTitle(resource),
-                mins: accessors.resource(resource).minsByDate[date],
+                mins: resource.minutesByDate
+                  ? resource.minutesByDate[date]
+                  : '',
                 resource: resource,
               }
             )
@@ -14288,8 +14290,8 @@
           /*#__PURE__*/ React__default.createElement(ResourceHeaderComponent, {
             index: 1000,
             title: 'other',
-            mins: 0,
-            resource: resources[0],
+            mins: '',
+            resource: {},
           })
         )
       )
