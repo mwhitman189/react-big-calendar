@@ -14,13 +14,15 @@ class TimeGridHeader extends React.Component {
     notify(this.props.onDrillDown, [date, view])
   }
 
-  renderHeaderCells() {
+  renderHeaderCells(resources, date) {
     let {
-      resources,
-      date,
       accessors,
       components: { resourceHeader: ResourceHeaderComponent = ResourceHeader },
     } = this.props
+    const now = new Date()
+    const currentDate = now.getDate()
+    const thisDate = date.getDate()
+    const dateOfMonth = currentDate >= thisDate ? thisDate.toString() : 0
 
     return (
       <div className="rbc-header inverted">
@@ -35,7 +37,7 @@ class TimeGridHeader extends React.Component {
                 index={idx}
                 title={accessors.resourceTitle(resource)}
                 mins={
-                  resource.minutesByDate ? resource.minutesByDate[date] : ''
+                  resource.minsByDate ? resource.minsByDate[dateOfMonth] : 0
                 }
                 resource={resource}
               />
@@ -46,7 +48,7 @@ class TimeGridHeader extends React.Component {
           <ResourceHeaderComponent
             index={1000}
             title={'other'}
-            mins={''}
+            mins={0}
             resource={{}}
           />
         </div>
