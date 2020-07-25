@@ -20,7 +20,7 @@ class TimeGridHeader extends React.Component {
       components: { resourceHeader: ResourceHeaderComponent = ResourceHeader },
     } = this.props
     const now = new Date()
-    const currentMonth = now.getDate()
+    const currentMonth = now.getMonth()
     const dateMonth = date.getMonth()
     const dateOfMonth =
       dateMonth === currentMonth ? date.getDate().toString() : 0
