@@ -28,7 +28,7 @@ class TimeGridHeader extends React.Component {
     return (
       <div className="rbc-header inverted">
         {resources.map(([id, resource], idx) => {
-          if (resource.isPartTime) return false
+          if (resource.isPartTime || resource.isSub) return false
           return (
             <div
               className="rbc-row-resource inverted"

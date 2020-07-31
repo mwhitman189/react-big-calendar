@@ -14264,7 +14264,7 @@
         resources.map(function(_ref, idx) {
           var id = _ref[0],
             resource = _ref[1]
-          if (resource.isPartTime) return false
+          if (resource.isPartTime || resource.isSub) return false
           return /*#__PURE__*/ React__default.createElement(
             'div',
             {
@@ -14505,7 +14505,7 @@
       }
 
       _this.handleSelectAlldayEvent = function() {
-        //cancel any pending selections so only the event click goes through.
+        // Cancel any pending selections so only the event click goes through.
         _this.clearSelection()
 
         for (
@@ -14770,7 +14770,7 @@
       var fullTimeResourceIds = []
       var partTimeResourceIds = []
       this.props.resources.forEach(function(r) {
-        return r.isPartTime
+        return r.isPartTime || r.isSub
           ? partTimeResourceIds.push(r.resourceId)
           : fullTimeResourceIds.push(r.resourceId)
       })

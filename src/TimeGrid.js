@@ -90,7 +90,7 @@ export default class TimeGrid extends Component {
   }
 
   handleSelectAlldayEvent = (...args) => {
-    //cancel any pending selections so only the event click goes through.
+    // Cancel any pending selections so only the event click goes through.
     this.clearSelection()
     notify(this.props.onSelectEvent, args)
   }
@@ -246,7 +246,7 @@ export default class TimeGrid extends Component {
     const fullTimeResourceIds = []
     const partTimeResourceIds = []
     this.props.resources.forEach(r =>
-      r.isPartTime
+      r.isPartTime || r.isSub
         ? partTimeResourceIds.push(r.resourceId)
         : fullTimeResourceIds.push(r.resourceId)
     )

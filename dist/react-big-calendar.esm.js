@@ -4295,7 +4295,7 @@ var TimeGridHeader$1 = /*#__PURE__*/ (function(_React$Component) {
       resources.map(function(_ref, idx) {
         var id = _ref[0],
           resource = _ref[1]
-        if (resource.isPartTime) return false
+        if (resource.isPartTime || resource.isSub) return false
         return /*#__PURE__*/ React.createElement(
           'div',
           {
@@ -4520,7 +4520,7 @@ var TimeGrid = /*#__PURE__*/ (function(_Component) {
     }
 
     _this.handleSelectAlldayEvent = function() {
-      //cancel any pending selections so only the event click goes through.
+      // Cancel any pending selections so only the event click goes through.
       _this.clearSelection()
 
       for (
@@ -4785,7 +4785,7 @@ var TimeGrid = /*#__PURE__*/ (function(_Component) {
     var fullTimeResourceIds = []
     var partTimeResourceIds = []
     this.props.resources.forEach(function(r) {
-      return r.isPartTime
+      return r.isPartTime || r.isSub
         ? partTimeResourceIds.push(r.resourceId)
         : fullTimeResourceIds.push(r.resourceId)
     })
