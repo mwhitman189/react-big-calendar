@@ -531,6 +531,11 @@ class Calendar extends React.Component {
     invertResourcesAndDates: PropTypes.bool,
 
     /**
+     * Set whether to display the 'Other' column
+     */
+    displayOtherColumn: PropTypes.bool,
+
+    /**
      * Constrains the minimum _time_ of the Day and Week views.
      */
     min: PropTypes.instanceOf(Date),
@@ -693,6 +698,7 @@ class Calendar extends React.Component {
       timeGutterHeader: PropTypes.elementType,
       resourceHeader: PropTypes.elementType,
       invertResourcesAndDates: PropTypes.elementType,
+      displayOtherColumn: PropTypes.elementType,
 
       toolbar: PropTypes.elementType,
 
@@ -729,6 +735,7 @@ class Calendar extends React.Component {
       week: PropTypes.node,
       day: PropTypes.node,
       invertResourcesAndDates: PropTypes.node,
+      displayOtherColumn: PropTypes.node,
       agenda: PropTypes.node,
       date: PropTypes.node,
       time: PropTypes.node,

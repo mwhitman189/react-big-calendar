@@ -114,6 +114,7 @@ export default class TimeGrid extends Component {
       localizer,
       dayLayoutAlgorithm,
       invertResourcesAndDates,
+      displayOtherColumn,
     } = this.props
 
     const resources = this.memoizedResources(this.props.resources, accessors)
@@ -152,7 +153,7 @@ export default class TimeGrid extends Component {
             events={daysEvents}
             dayLayoutAlgorithm={dayLayoutAlgorithm}
           />
-          {isLast && (
+          {displayOtherColumn && isLast && (
             <DayColumn
               {...this.props}
               localizer={localizer}
@@ -230,6 +231,7 @@ export default class TimeGrid extends Component {
       showMultiDayTimes,
       longPressThreshold,
       invertResourcesAndDates,
+      displayOtherColumn,
     } = this.props
 
     width = width || this.state.gutterWidth
@@ -323,6 +325,7 @@ export default class TimeGrid extends Component {
             onDrillDown={this.props.onDrillDown}
             getDrilldownView={this.props.getDrilldownView}
             partTimeResourceIds={partTimeResourceIds}
+            displayOtherColumn={displayOtherColumn}
           />
         )}
         <div
@@ -422,6 +425,7 @@ TimeGrid.propTypes = {
   min: PropTypes.instanceOf(Date),
   max: PropTypes.instanceOf(Date),
   invertResourcesAndDates: PropTypes.bool,
+  displayOtherColumn: PropTypes.bool,
   getNow: PropTypes.func.isRequired,
 
   scrollToTime: PropTypes.instanceOf(Date),
