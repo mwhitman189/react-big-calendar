@@ -8,7 +8,7 @@ const ResourceHeader = ({ title, mins }) => {
   return (
     <div style={containerStyles}>
       <p style={textStyles}>{title}</p>
-      <p style={textStyles}>{mins}</p>
+      {mins !== 0 && <p style={textStyles}>{mins}</p>}
     </div>
   )
 }
