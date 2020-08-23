@@ -13892,13 +13892,14 @@
         },
         title
       ),
-      /*#__PURE__*/ React__default.createElement(
-        'p',
-        {
-          style: textStyles,
-        },
-        mins
-      )
+      mins !== 0 &&
+        /*#__PURE__*/ React__default.createElement(
+          'p',
+          {
+            style: textStyles,
+          },
+          mins
+        )
     )
   }
 
@@ -14246,6 +14247,7 @@
     _proto.renderHeaderCells = function renderHeaderCells(resources, date) {
       var _this$props2 = this.props,
         accessors = _this$props2.accessors,
+        displayOthersColumn = _this$props2.displayOthersColumn,
         _this$props2$componen = _this$props2.components.resourceHeader,
         ResourceHeaderComponent =
           _this$props2$componen === void 0
@@ -14284,19 +14286,23 @@
             )
           )
         }),
-        /*#__PURE__*/ React__default.createElement(
-          'div',
-          {
-            className: 'rbc-row-resource inverted',
-            key: 'resource_other',
-          },
-          /*#__PURE__*/ React__default.createElement(ResourceHeaderComponent, {
-            index: 1000,
-            title: 'other',
-            mins: 0,
-            resource: {},
-          })
-        )
+        displayOthersColumn &&
+          /*#__PURE__*/ React__default.createElement(
+            'div',
+            {
+              className: 'rbc-row-resource inverted',
+              key: 'resource_other',
+            },
+            /*#__PURE__*/ React__default.createElement(
+              ResourceHeaderComponent,
+              {
+                index: 1000,
+                title: 'other',
+                mins: 0,
+                resource: {},
+              }
+            )
+          )
       )
     }
 
@@ -14430,6 +14436,7 @@
     getNow: propTypes.func.isRequired,
     isOverflowing: propTypes.bool,
     invertResourcesAndDates: propTypes.bool,
+    displayOthersColumn: propTypes.bool,
     date: propTypes.object,
     rtl: propTypes.bool,
     width: propTypes.number,
@@ -14626,7 +14633,8 @@
         accessors = _this$props2.accessors,
         localizer = _this$props2.localizer,
         dayLayoutAlgorithm = _this$props2.dayLayoutAlgorithm,
-        invertResourcesAndDates = _this$props2.invertResourcesAndDates
+        invertResourcesAndDates = _this$props2.invertResourcesAndDates,
+        displayOthersColumn = _this$props2.displayOthersColumn
       var resources = this.memoizedResources(this.props.resources, accessors)
       var groupedEvents = resources.groupEvents(events, partTimeResourceIds)
 
@@ -14677,7 +14685,8 @@
               dayLayoutAlgorithm: dayLayoutAlgorithm,
             })
           ),
-          isLast &&
+          displayOthersColumn &&
+            isLast &&
             /*#__PURE__*/ React__default.createElement(
               DayColumn,
               _extends({}, _this2.props, {
@@ -14759,7 +14768,8 @@
         max = _this$props3.max,
         showMultiDayTimes = _this$props3.showMultiDayTimes,
         longPressThreshold = _this$props3.longPressThreshold,
-        invertResourcesAndDates = _this$props3.invertResourcesAndDates
+        invertResourcesAndDates = _this$props3.invertResourcesAndDates,
+        displayOthersColumn = _this$props3.displayOthersColumn
       width = width || this.state.gutterWidth
       var start = range[0],
         end = range[range.length - 1]
@@ -14846,6 +14856,7 @@
               onDrillDown: this.props.onDrillDown,
               getDrilldownView: this.props.getDrilldownView,
               partTimeResourceIds: partTimeResourceIds,
+              displayOthersColumn: displayOthersColumn,
             }),
         /*#__PURE__*/ React__default.createElement(
           'div',
@@ -14937,6 +14948,7 @@
     min: propTypes.instanceOf(Date),
     max: propTypes.instanceOf(Date),
     invertResourcesAndDates: propTypes.bool,
+    displayOthersColumn: propTypes.bool,
     getNow: propTypes.func.isRequired,
     scrollToTime: propTypes.instanceOf(Date),
     showMultiDayTimes: propTypes.bool,
@@ -17703,6 +17715,11 @@
     invertResourcesAndDates: propTypes.bool,
 
     /**
+     * Set whether to display the 'Other' column
+     */
+    displayOthersColumn: propTypes.bool,
+
+    /**
      * Constrains the minimum _time_ of the Day and Week views.
      */
     min: propTypes.instanceOf(Date),
@@ -17864,6 +17881,7 @@
       timeGutterHeader: propTypes.elementType,
       resourceHeader: propTypes.elementType,
       invertResourcesAndDates: propTypes.elementType,
+      displayOthersColumn: propTypes.elementType,
       toolbar: propTypes.elementType,
       agenda: propTypes.shape({
         date: propTypes.elementType,
@@ -17897,6 +17915,7 @@
       week: propTypes.node,
       day: propTypes.node,
       invertResourcesAndDates: propTypes.node,
+      displayOthersColumn: propTypes.node,
       agenda: propTypes.node,
       date: propTypes.node,
       time: propTypes.node,
